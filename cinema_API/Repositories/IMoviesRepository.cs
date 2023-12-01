@@ -2,7 +2,7 @@
 
 namespace cinema_API.Repositories
 {
-    public interface IMoviesRepository : IRepository<MovieSessionShort, string, int>
+    public interface IMoviesRepository : IRepository<MovieSessionShort, MovieSessionFull, int>
     {
     }
 }

@@ -14,7 +14,7 @@ namespace cinema_API.Services
         {
             return dict.Count > 0 ? _repository.GetAll(dict) : _repository.GetAll();
         }
-        public string GetOne(int id)
+        public MovieSessionFull GetOne(int id)
         {
             return _repository.GetOne(id);
         }

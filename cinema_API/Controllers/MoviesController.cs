@@ -16,15 +16,16 @@ namespace cinema_API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<MovieSessionShort> GetMovies([FromQuery] Dictionary<string, string> query)
+        public IActionResult GetMovies([FromQuery] Dictionary<string, string> query)
         {
-            return _moviesService.GetAll(query);
+            return Ok(_moviesService.GetAll(query));
         }
 
         [HttpGet("{id}")]
-        public string GetMovie([FromRoute] int id)
+        public IActionResult GetMovie([FromRoute] int id)
         {
-            return _moviesService.GetOne(id);
+            var res = _moviesService.GetOne(id);
+            return res != null ? Ok(res) : NotFound();
         }
     }
 }

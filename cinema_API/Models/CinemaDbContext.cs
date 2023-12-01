@@ -62,6 +62,7 @@ namespace cinema_API.Models
             modelBuilder.Entity<Session>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.DateTime).HasColumnType("timestamp without time zone");
                 entity.HasOne(e => e.MovieNavigation).WithMany(i => i.SessionNavigation).HasForeignKey(e => e.IdMovie);
                 entity.HasOne(e => e.HallNavigation).WithMany(i => i.SessionNavigation).HasForeignKey(e => e.IdHall);
                 entity.HasOne(e => e.VideoTypeNavigation).WithMany(i => i.SessionNavigation).HasForeignKey(e => e.IdVideoType);
