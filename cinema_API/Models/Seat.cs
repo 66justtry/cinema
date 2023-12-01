@@ -7,5 +7,8 @@
         public int IdSeatType { get; set; }
         public int Row { get; set; }
         public int Place { get; set; }
+        public Hall? HallNavigation { get; set; }
+        public SeatType? SeatTypeNavigation { get; set; }
+        public ICollection<OrderSeat> OrderSeatNavigation { get; set; } = new List<OrderSeat>();
     }
 }

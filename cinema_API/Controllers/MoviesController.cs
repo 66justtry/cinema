@@ -1,4 +1,5 @@
-﻿using cinema_API.Services;
+﻿using cinema_API.Models;
+using cinema_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace cinema_API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> GetMovies([FromQuery] Dictionary<string, string> query)
+        public IEnumerable<MovieSessionShort> GetMovies([FromQuery] Dictionary<string, string> query)
         {
             return _moviesService.GetAll(query);
         }

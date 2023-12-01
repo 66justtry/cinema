@@ -1,4 +1,5 @@
-﻿using cinema_API.Repositories;
+﻿using cinema_API.Models;
+using cinema_API.Repositories;
 
 namespace cinema_API.Services
 {
@@ -9,7 +10,7 @@ namespace cinema_API.Services
         {
             _repository = repository;
         }
-        public IEnumerable<string> GetAll(Dictionary<string, string> dict)
+        public IEnumerable<MovieSessionShort> GetAll(Dictionary<string, string> dict)
         {
             return dict.Count > 0 ? _repository.GetAll(dict) : _repository.GetAll();
         }

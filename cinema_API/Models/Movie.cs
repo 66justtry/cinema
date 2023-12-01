@@ -1,4 +1,6 @@
-﻿namespace cinema_API.Domain
+﻿using cinema_API.Models;
+
+namespace cinema_API.Domain
 {
     public class Movie
     {
@@ -14,5 +16,6 @@
         public string Country { get; set; }
         public string Actors { get; set; }
         public string Info { get; set; }
+        public ICollection<Session> SessionNavigation { get; set; } = new List<Session>();
     }
 }

@@ -31,3 +31,13 @@ D:\111\cinema_pet_project\cinema_API\cinema_API\obj\Debug\net7.0\refint\cinema_A
 D:\111\cinema_pet_project\cinema_API\cinema_API\obj\Debug\net7.0\cinema_API.pdb
 D:\111\cinema_pet_project\cinema_API\cinema_API\obj\Debug\net7.0\cinema_API.genruntimeconfig.cache
 D:\111\cinema_pet_project\cinema_API\cinema_API\obj\Debug\net7.0\ref\cinema_API.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Humanizer.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Npgsql.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\System.CodeDom.dll
