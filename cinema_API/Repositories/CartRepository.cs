@@ -17,7 +17,8 @@ namespace cinema_API.Repositories
                 .Include(s => s.SessionSeatTypeNavigation)
                 .Include(s => s.OrderNavigation).ThenInclude(o => o.OrderSeatNavigation)
                 .Include(s => s.VideoTypeNavigation)
-                .Include(s => s.MovieNavigation);
+                .Include(s => s.MovieNavigation)
+                .AsNoTracking();
             var result = query.Select(s => new CartSessionFull(s)).ToList();
             return result.Count > 0 ? result.First() : null;
         }

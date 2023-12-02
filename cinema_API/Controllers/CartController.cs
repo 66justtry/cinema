@@ -1,6 +1,8 @@
-﻿using cinema_API.Services;
+﻿using cinema_API.Models;
+using cinema_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace cinema_API.Controllers
 {
@@ -13,8 +15,14 @@ namespace cinema_API.Controllers
         {
             _cartService = cartService;
         }
-
+        /// <summary>
+        /// Дані для сторінки вибору місць
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
         [HttpGet("{sessionId}")]
+        [ProducesResponseType(typeof(CartSessionFull), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(object), (int)HttpStatusCode.NotFound)]
         public IActionResult GetCart([FromRoute] int sessionId)
         {
             var res = _cartService.GetCart(sessionId);
