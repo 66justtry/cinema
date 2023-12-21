@@ -11,18 +11,7 @@ namespace cinema_API.Repositories
         {
             _context = context;
         }
-        public IEnumerable<MovieSessionShort> GetAll()
-        {
-            var query = _context.Movies.Include(m => m.SessionNavigation.Where(s => s.DateTime.Date == DateTime.Today))
-                .ThenInclude(s => s.SessionSeatTypeNavigation)
-                .Include(m => m.SessionNavigation.Where(s => s.DateTime.Date == DateTime.Today))
-                .ThenInclude(s => s.VideoTypeNavigation)
-                .Where(m => m.SessionNavigation.Count > 0)
-                .AsNoTracking()
-                .Select(m => new MovieSessionShort(m.Id, m.Name, m.Age, m.PhotoUrl, m.SessionNavigation));
-            return query.ToList();
-        }
-
+     
         public IEnumerable<MovieSessionShort> GetAll(Dictionary<string, string> filter)
         {
             var query = _context.Movies.AsQueryable();
@@ -31,14 +20,13 @@ namespace cinema_API.Repositories
             {
                 dateTime = DateTime.Today;
             }
-            query = query.Include(m => m.SessionNavigation.Where(s => s.DateTime.Date == dateTime))
-                .ThenInclude(s => s.SessionSeatTypeNavigation)
-                .Include(m => m.SessionNavigation.Where(s => s.DateTime.Date == dateTime))
+            query = query.Include(m => m.SessionNavigation).ThenInclude(s => s.SessionSeatTypeNavigation)
+                .Include(m => m.SessionNavigation)
                 .ThenInclude(s => s.VideoTypeNavigation)
-                .Where(m => m.SessionNavigation.Count > 0)
+                .Where(m => m.SessionNavigation.Any(s => s.DateTime.Date == dateTime && s.DateTime > DateTime.Now))
                 .AsNoTracking();
             var result = query
-                .Select(m => new MovieSessionShort(m.Id, m.Name, m.Age, m.PhotoUrl, m.SessionNavigation));
+                .Select(m => new MovieSessionShort(m.Id, m.Name, m.Age, m.PhotoUrl, m.SessionNavigation.Where(s => s.DateTime.Date == dateTime && s.DateTime > DateTime.Now).OrderBy(s => s.DateTime).ToList()));
             return result.ToList();
         }
 
@@ -46,11 +34,10 @@ namespace cinema_API.Repositories
         {
             var query = _context.Movies.AsQueryable();
             query = query.Where(m => m.Id == key)
-                .Include(m => m.SessionNavigation.Where(s => s.DateTime.Date >= DateTime.Today))
+                .Include(m => m.SessionNavigation)
                 .ThenInclude(s => s.VideoTypeNavigation)
-                .Include(m => m.SessionNavigation.Where(s => s.DateTime.Date >= DateTime.Today))
+                .Include(m => m.SessionNavigation)
                 .ThenInclude(s => s.SessionSeatTypeNavigation)
-                .Where(m => m.SessionNavigation.Count > 0)
                 .AsNoTracking();
             var result = query
                 .Select(m => new MovieSessionFull(m)).ToList();

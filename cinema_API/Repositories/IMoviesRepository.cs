@@ -2,7 +2,9 @@
 
 namespace cinema_API.Repositories
 {
-    public interface IMoviesRepository : IRepository<MovieSessionShort, MovieSessionFull, int>
+    public interface IMoviesRepository
     {
+        IEnumerable<MovieSessionShort> GetAll(Dictionary<string, string> filter);
+        MovieSessionFull GetOne(int key);
     }
 }

@@ -31,10 +31,11 @@ namespace cinema_API.Models
             Country = movie.Country;
             Actors = movie.Actors;
             Info = movie.Info;
-            foreach (var session in movie.SessionNavigation)
+            foreach (var session in movie.SessionNavigation.Where(s => s.DateTime > DateTime.Now))
             {
                 Sessions.Add(new SessionShort(session.Id, session.VideoTypeNavigation.Name, session.DateTime, session.SessionSeatTypeNavigation.Min(x => x.Price)));
             }
+            Sessions = Sessions.OrderBy(s => s.DateTime).ToList();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace cinema_API.Services
 
         public CartSessionFull GetCart(int sessionId)
         {
-            return _repository.GetCard(sessionId);
+            return _repository.GetCart(sessionId);
         }
     }
 }

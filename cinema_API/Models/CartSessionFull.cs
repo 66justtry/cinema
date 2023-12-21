@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string PhotoUrl { get; set; }
+        public DateTime DateTime { get; set; }
         public int Duration { get; set; }
         public string VideoTypeName { get; set; }
         public string HallName { get; set; }
@@ -14,6 +15,7 @@
             Id = session.Id;
             Name = session.MovieNavigation.Name;
             PhotoUrl = session.MovieNavigation.PhotoUrl;
+            DateTime = session.DateTime;
             Duration = session.MovieNavigation.Duration;
             VideoTypeName = session.VideoTypeNavigation.Name;
             HallName = session.HallNavigation.Name;

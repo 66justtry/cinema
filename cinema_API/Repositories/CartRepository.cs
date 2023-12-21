@@ -10,7 +10,7 @@ namespace cinema_API.Repositories
         {
             _context = context;
         }
-        public CartSessionFull GetCard(int sessionId)
+        public CartSessionFull GetCart(int sessionId)
         {
             var query = _context.Sessions.AsQueryable().Where(s => s.Id == sessionId)
                 .Include(s => s.HallNavigation).ThenInclude(h => h.SeatNavigation).ThenInclude(s => s.SeatTypeNavigation)

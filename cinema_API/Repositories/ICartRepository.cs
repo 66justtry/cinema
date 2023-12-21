@@ -4,6 +4,6 @@ namespace cinema_API.Repositories
 {
     public interface ICartRepository
     {
-        CartSessionFull GetCard(int sessionId);
+        CartSessionFull GetCart(int sessionId);
     }
 }

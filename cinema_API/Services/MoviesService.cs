@@ -12,7 +12,7 @@ namespace cinema_API.Services
         }
         public IEnumerable<MovieSessionShort> GetAll(Dictionary<string, string> dict)
         {
-            return dict.Count > 0 ? _repository.GetAll(dict) : _repository.GetAll();
+            return _repository.GetAll(dict);
         }
         public MovieSessionFull GetOne(int id)
         {
