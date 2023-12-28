@@ -1,8 +1,10 @@
-﻿namespace cinema_API.Services
+﻿using cinema_API.Models;
+
+namespace cinema_API.Services
 {
     public interface IMoviesService
     {
-        IEnumerable<string> GetAll(Dictionary<string, string> dict);
-        string GetOne(int id);
+        IEnumerable<MovieSessionShort> GetAll(Dictionary<string, string> dict);
+        MovieSessionFull GetOne(int id);
     }
 }
