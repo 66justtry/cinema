@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  api:
+    image: api
+    build:
+      context: ./cinema_API
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15.5-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      LANG: uk_UA.utf8
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=uk-UA"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  db-data:
