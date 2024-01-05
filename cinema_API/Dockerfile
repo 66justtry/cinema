@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["cinema_API/cinema_API.csproj", "cinema_API/"]
-RUN dotnet restore "cinema_API/cinema_API.csproj"
+COPY ["cinema_API.csproj", "cinema_API.csproj"]
+RUN dotnet restore "cinema_API.csproj"
 COPY . .
-WORKDIR "/src/cinema_API"
+WORKDIR "/src"
 RUN dotnet build "cinema_API.csproj" -c Release -o /app/build
 
 FROM build AS publish

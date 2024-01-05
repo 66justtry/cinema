@@ -3,18 +3,9 @@ using cinema_API.Repositories;
 using cinema_API.Services;
 using Microsoft.EntityFrameworkCore;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:4200");
-                      });
-});
+builder.Services.AddCors();
 
 builder.Services.AddControllers();
 
@@ -33,8 +24,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseCors(MyAllowSpecificOrigins);
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -43,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

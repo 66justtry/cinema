@@ -23,7 +23,17 @@ services:
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
-    restart: always
+    restart: unless-stopped
+    
+  client:
+    image: client
+    build:
+      context: ./ClientApp
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
 
 volumes:
   db-data:
