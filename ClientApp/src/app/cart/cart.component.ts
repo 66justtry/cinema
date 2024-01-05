@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DateService } from '../services/date.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-cart',
@@ -27,7 +28,7 @@ export class CartComponent implements OnInit {
     public isError = false;
     
     getMovie(): void {
-        this.http.get<CartSessionFull>(this.baseUrl + 'api/cart/' + this.sessionId).subscribe(result => {
+        this.http.get<CartSessionFull>(environment.apiUrl + '/cart/' + this.sessionId).subscribe(result => {
           this.cart = result;
           for (let s of this.cart.seats) {
             s.isClicked = false;
@@ -111,7 +112,7 @@ export class CartComponent implements OnInit {
     }
     
     createOrder(phone: string) {
-        this.http.post(this.baseUrl + 'api/orders', {'sessionId': this.sessionId, 'phone': phone, 'sum': this.sum, 'seatIds': this.takenSeats.map(x => x.id)}).subscribe(result => {
+        this.http.post(environment.apiUrl + '/orders', {'sessionId': this.sessionId, 'phone': phone, 'sum': this.sum, 'seatIds': this.takenSeats.map(x => x.id)}).subscribe(result => {
             for (let seat of this.takenSeats) {
                 this.resultSeats.push(new SeatResult(seat.row, seat.place));
             }
@@ -120,7 +121,7 @@ export class CartComponent implements OnInit {
         }, () => { this.isPaymentActive = false; this.isError = true; });
     }
     
-    constructor(private dateService: DateService, private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+    constructor(private dateService: DateService, private route: ActivatedRoute, private http: HttpClient) {
     }
 }
 

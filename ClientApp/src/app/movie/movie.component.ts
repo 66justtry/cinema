@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ElementRef, HostListener } from '@angular/co
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from './../services/date.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-movie',
@@ -25,7 +26,7 @@ export class MovieComponent implements OnInit {
   }
   
   getMovie(movieId: number): void {
-    this.http.get<MovieSessionFull>(this.baseUrl + 'api/movies/' + movieId).subscribe(result => {
+    this.http.get<MovieSessionFull>(environment.apiUrl + '/movies/' + movieId).subscribe(result => {
       this.movie = result;
       if (this.movie.sessions.length > 0) {
         for (let s of this.movie.sessions) {
@@ -61,7 +62,7 @@ export class MovieComponent implements OnInit {
     }, () => {this.isLoading = false;});
   }
   
-  constructor(private dateService: DateService, private route: ActivatedRoute, private el: ElementRef, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private dateService: DateService, private route: ActivatedRoute, private el: ElementRef, private http: HttpClient) {
   }
   
   setIndex(i: number): void {

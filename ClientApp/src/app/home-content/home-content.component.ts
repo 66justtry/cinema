@@ -3,6 +3,7 @@ import { DateChangeService } from '../services/date-change.service';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DateService } from '../services/date.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home-content',
@@ -14,11 +15,11 @@ export class HomeContentComponent implements OnDestroy{
   public movies: MovieSessionShort[] = [];
   private subscription: Subscription;
   
-  getMovies(http: HttpClient, baseUrl: string, date: Date | null): void {
+  getMovies(http: HttpClient, date: Date | null): void {
     let q = "";
     if (date !== null)
       q = "?date=" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-    http.get<MovieSessionShort[]>(baseUrl + 'api/movies' + q).subscribe(result => {
+    http.get<MovieSessionShort[]>(environment.apiUrl + '/movies' + q).subscribe(result => {
       
       this.movies = result;
       for (let m of this.movies)
@@ -30,14 +31,14 @@ export class HomeContentComponent implements OnDestroy{
     }, () => {});
   }
   
-  constructor(private dateChangeService: DateChangeService, private dateService: DateService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private dateChangeService: DateChangeService, private dateService: DateService, http: HttpClient) {
     this.isLoading = true;
-    this.getMovies(http, baseUrl, null);
+    this.getMovies(http, null);
     
     this.subscription = this.dateChangeService.currentDate.subscribe((date) => {
       this.movies = [];
       this.isLoading = true;
-      this.getMovies(http, baseUrl, date);
+      this.getMovies(http, date);
     });
   }
   
