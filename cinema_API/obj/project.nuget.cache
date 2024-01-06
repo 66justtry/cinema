@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7OADo9wH9u+rYbAgwWXEGgUfHTGmTDE0L8tpY1T2LwWmhkvdgF6Ct+amroMBXpxnmiJJyiE70hsCTBwlgBJ0/Q==",
+  "dgSpecHash": "b59HPw3WrhyHW/56iq0EacFU0HcBBm4W2pthUCH4UhKcFGm1KsyZ+9gxe8fkbZCB+Kor59+2EfqH0+0hBAO95Q==",
   "success": true,
   "projectFilePath": "D:\\111\\cinema_pet_project\\cinema_API\\cinema_API\\cinema_API.csproj",
   "expectedPackageFiles": [
@@ -26,13 +26,17 @@
     "C:\\Users\\slavi\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\npgsql\\7.0.0\\npgsql.7.0.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.0\\npgsql.entityframeworkcore.postgresql.7.0.0.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\stackexchange.redis\\2.7.10\\stackexchange.redis.2.7.10.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\slavi\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"

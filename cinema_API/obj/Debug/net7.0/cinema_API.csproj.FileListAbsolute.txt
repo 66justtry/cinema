@@ -41,3 +41,6 @@ D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Mono.TextTempla
 D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Npgsql.dll
 D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\System.CodeDom.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+D:\111\cinema_pet_project\cinema_API\cinema_API\bin\Debug\net7.0\StackExchange.Redis.dll

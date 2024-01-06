@@ -9,6 +9,7 @@ services:
       - "80:80"
     depends_on:
       - db
+      - redis
 
   db:
     image: postgres:15.5-alpine
@@ -34,6 +35,18 @@ services:
       - "4200:4200"
     depends_on:
       - api
+  
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis
+    environment:
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
 
 volumes:
   db-data:
+  redis-data:

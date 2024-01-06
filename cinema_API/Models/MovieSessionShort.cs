@@ -7,6 +7,10 @@
         public int Age { get; set; }
         public string PhotoUrl { get; set; }
         public List<SessionShort> Sessions { get; set; } = new List<SessionShort>();
+        public MovieSessionShort()
+        {
+
+        }
         public MovieSessionShort(int id, string name, int age, string photoUrl, IEnumerable<Session> sessions)
         {
             Id = id;

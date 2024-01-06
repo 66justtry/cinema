@@ -10,6 +10,10 @@
         public string VideoTypeName { get; set; }
         public string HallName { get; set; }
         public List<SeatFull> Seats { get; set; } = new List<SeatFull>();
+        public CartSessionFull()
+        {
+
+        }
         public CartSessionFull(Session session)
         {
             Id = session.Id;

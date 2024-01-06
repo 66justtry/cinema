@@ -18,9 +18,11 @@ namespace cinema_API.Controllers
             public List<int> SeatIds { get; set; }
         }
         IOrdersService _ordersService;
-        public OrdersController(IOrdersService ordersService)
+        ICacheService _cacheService;
+        public OrdersController(IOrdersService ordersService, ICacheService cacheService)
         {
             _ordersService = ordersService;
+            _cacheService = cacheService;
         }
         /// <summary>
         /// Всі замовлення квитків по номеру телефону
@@ -31,7 +33,13 @@ namespace cinema_API.Controllers
         [ProducesResponseType(typeof(List<OrderFull>), (int)HttpStatusCode.OK)]
         public IActionResult GetOrders([FromRoute] string phone)
         {
-            return Ok(_ordersService.GetAll(phone));
+            var key = $"orders/{phone}";
+            var res = _cacheService.GetData<IEnumerable<OrderFull>>(key);
+            if (res != null)
+                return Ok(res);
+            res = _ordersService.GetAll(phone);
+            _cacheService.SetData<IEnumerable<OrderFull>>(key, res);
+            return Ok(res);
         }
         /// <summary>
         /// Створення нового замовлення квитків
@@ -44,7 +52,15 @@ namespace cinema_API.Controllers
         public IActionResult CreateOrder([FromBody] CreateRequestModel request)
         {
             var res = _ordersService.Create(request.SessionId, request.Phone, request.Sum, request.SeatIds);
-            return res ? Ok() : BadRequest();
+            if (res)
+            {
+                string key1 = $"cart/{request.SessionId}";
+                string key2 = $"orders/{request.Phone}";
+                _cacheService.RemoveData(key1);
+                _cacheService.RemoveData(key2);
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

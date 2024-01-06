@@ -17,6 +17,10 @@ namespace cinema_API.Models
         public string Actors { get; set; }
         public string Info { get; set; }
         public List<SessionShort> Sessions { get; set; } = new List<SessionShort>();
+        public MovieSessionFull()
+        {
+
+        }
         public MovieSessionFull(Movie movie)
         {
             Id = movie.Id;

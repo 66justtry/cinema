@@ -11,9 +11,11 @@ namespace cinema_API.Controllers
     public class MoviesController : ControllerBase
     {
         IMoviesService _moviesService;
-        public MoviesController(IMoviesService moviesService)
+        ICacheService _cacheService;
+        public MoviesController(IMoviesService moviesService, ICacheService cacheService)
         {
             _moviesService = moviesService;
+            _cacheService = cacheService;
         }
         /// <summary>
         /// Всі фільми в прокаті в заданий день
@@ -24,7 +26,13 @@ namespace cinema_API.Controllers
         [ProducesResponseType(typeof(List<MovieSessionShort>), (int)HttpStatusCode.OK)]
         public IActionResult GetMovies([FromQuery] Dictionary<string, string> query)
         {
-            return Ok(_moviesService.GetAll(query));
+            var key = "movies" + Request.QueryString.ToString();
+            var res = _cacheService.GetData<IEnumerable<MovieSessionShort>>(key);
+            if (res != null)
+                return Ok(res);
+            res = _moviesService.GetAll(query);
+            _cacheService.SetData<IEnumerable<MovieSessionShort>>(key, res);
+            return Ok(res);
         }
         /// <summary>
         /// Дані для сторінки фільму та його сеансів
@@ -36,8 +44,17 @@ namespace cinema_API.Controllers
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.NotFound)]
         public IActionResult GetMovie([FromRoute] int id)
         {
-            var res = _moviesService.GetOne(id);
-            return res != null ? Ok(res) : NotFound();
+            var key = $"movies/{id}";
+            var res = _cacheService.GetData<MovieSessionFull>(key);
+            if (res != null)
+                return Ok(res);
+            res = _moviesService.GetOne(id);
+            if (res != null)
+            {
+                _cacheService.SetData<MovieSessionFull>(key, res);
+                return Ok(res);
+            }
+            return NotFound();
         }
     }
 }

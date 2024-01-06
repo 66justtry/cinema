@@ -12,6 +12,10 @@
         public string HallName { get; set; }
         public int Sum { get; set; }
         public List<SeatShortModel> Seats { get; set; } = new List<SeatShortModel>();
+        public OrderFull()
+        {
+
+        }
         public OrderFull(string name, DateTime dateTime, string hallName, int sum, IEnumerable<OrderSeat> seats)
         {
             Name = name;

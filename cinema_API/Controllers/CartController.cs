@@ -11,9 +11,11 @@ namespace cinema_API.Controllers
     public class CartController : ControllerBase
     {
         ICartService _cartService;
-        public CartController(ICartService cartService)
+        ICacheService _cacheService;
+        public CartController(ICartService cartService, ICacheService cacheService)
         {
             _cartService = cartService;
+            _cacheService = cacheService;
         }
         /// <summary>
         /// Дані для сторінки вибору місць
@@ -25,8 +27,17 @@ namespace cinema_API.Controllers
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.NotFound)]
         public IActionResult GetCart([FromRoute] int sessionId)
         {
-            var res = _cartService.GetCart(sessionId);
-            return res != null ? Ok(res) : NotFound();
+            var key = $"cart/{sessionId}";
+            var res = _cacheService.GetData<CartSessionFull>(key);
+            if (res != null)
+                return Ok(res);
+            res = _cartService.GetCart(sessionId);
+            if (res != null)
+            {
+                _cacheService.SetData<CartSessionFull>(key, res);
+                return Ok(res);
+            }
+            return NotFound();
         }
     }
 }
